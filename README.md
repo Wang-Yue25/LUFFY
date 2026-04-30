@@ -80,40 +80,35 @@ LUFFY/
 - [ ] **luffy/verl/tests/ray/test_worker_group_basics.py:43** - pass *args and **kwargs is bug prone and not very convincing
 - [ ] **luffy/verl/verl/mix_src/mix_fsdp_worker.py:54** - (sgm): support FSDP hybrid shard for larger model
 - [ ] **luffy/verl/verl/mix_src/mix_fsdp_worker.py:83** - it seems that manual offload is slowly than FSDP offload
-- [ ] **luffy/verl/verl/mix_src/mix_fsdp_worker.py:123** - (zhangchi.usc1992): 1. support create from random initialized model. 2. Support init with FSDP directly
-- [ ] **luffy/verl/verl/mix_src/mix_fsdp_worker.py:163** - (zhangchi.usc1992) remove this after we switch to fsdp2
-- [ ] **luffy/verl/verl/mix_src/mix_fsdp_worker.py:199** - (zhangchi.usc1992, shengguangming) fix me. Current, auto_wrap_policy causes HFRollout to hang in Gemma
-- [ ] **luffy/verl/verl/mix_src/mix_fsdp_worker.py:207** - add transformer policy
-- [ ] **luffy/verl/verl/mix_src/mix_fsdp_worker.py:226** - add more optimizer args into config
-- [ ] **luffy/verl/verl/mix_src/mix_fsdp_worker.py:252** - (sgm): support FSDP hybrid shard for larger model
-- [ ] **luffy/verl/verl/mix_src/mix_fsdp_worker.py:263** - a sharding manager that do nothing?
-- [ ] **luffy/verl/verl/mix_src/mix_fsdp_worker.py:391** - here, we should return all metrics
 - [ ] **luffy/verl/verl/mix_src/mix_fsdp_worker.py:517** - support DCP and save sharded checkpoints
 - [ ] **luffy/verl/verl/mix_src/mix_trainer.py:90** - add other ways to estimate advantages
-- [ ] **luffy/verl/verl/mix_src/mix_trainer.py:168** - support each role have individual ray_worker_group_cls,
-- [ ] **luffy/verl/verl/mix_src/mix_trainer.py:293** - we have to make sure the batch size is divisible by the dp size
-- [ ] **luffy/verl/verl/mix_src/mix_trainer.py:599** - make a canonical logger that supports various backend
-- [ ] **luffy/verl/verl/mix_src/mix_trainer_acc_rebatch.py:12** - we have to make sure the batch size is divisible by the dp size
-- [ ] **luffy/verl/verl/mix_src/mix_vllm_rollout.py:40** - 
-- [ ] **luffy/verl/verl/mix_src/mix_vllm_rollout.py:41** - 
-- [ ] **luffy/verl/verl/models/llama/megatron/layers/parallel_attention.py:98** - 
+- [ ] **luffy/verl/verl/mix_src/mix_trainer.py:645** - add response length
+- [ ] **luffy/verl/verl/models/llama/megatron/layers/parallel_attention.py:298** - llama does not have dropout in the config??
 - [ ] **luffy/verl/verl/models/llama/megatron/layers/parallel_decoder.py:79** - add sequence parallel operator reduce_scatter here
-- [ ] **luffy/verl/verl/models/llama/megatron/modeling_llama_megatron.py:67** -  1. Add weight initialization. Here we need to be careful on TP weight init.
-- [ ] **luffy/verl/verl/models/registry.py:16** - (sgm): HF may supported more than listed here, we should add more after testing
-- [ ] **luffy/verl/verl/models/transformers/llama.py:218** - 
-- [ ] **luffy/verl/verl/protocol.py:85** - Implement batch dimension folding for efficient processing
-- [ ] **luffy/verl/verl/protocol.py:86** - Add validation for batch size divisibility
-- [ ] **luffy/verl/verl/single_controller/ray/base.py:357** - create a class with customizable name
-- [ ] **luffy/verl/verl/trainer/fsdp_sft_trainer.py:16** - (zhangchi.usc1992):
-- [ ] **luffy/verl/verl/trainer/fsdp_sft_trainer.py:17** - 1. support pretrain from random weights
-- [ ] **luffy/verl/verl/trainer/fsdp_sft_trainer.py:18** - 2. support loading HuggingFace models
-- [ ] **luffy/verl/verl/trainer/fsdp_sft_trainer.py:19** - 3. support FSDP
+- [ ] **luffy/verl/verl/models/llama/megatron/layers/parallel_decoder.py:85** - add sequence parallel operator all_gather here
+- [ ] **luffy/verl/verl/models/llama/megatron/layers/parallel_decoder.py:89** - add sequence parallel operator reduce_scatter here
+- [ ] **luffy/verl/verl/models/registry.py:21** - (sgm): HF may supported more than listed here, we should add more after testing
+- [ ] **luffy/verl/verl/models/transformers/llama.py:88** - These transpose are quite inefficient but Flash Attention requires the layout [batch_size, sequence_length, num_heads, head_dim]. We would need to refactor the KV cache
+- [ ] **luffy/verl/verl/protocol.py:132** - Optimize memory usage during tensor reshaping
+- [ ] **luffy/verl/verl/protocol.py:133** - Add support for different tensor types and shapes
+- [ ] **luffy/verl/verl/protocol.py:152** - Optimize tensor view operations for performance
+- [ ] **luffy/verl/verl/protocol.py:153** - Add error handling for invalid batch dimensions
+- [ ] **luffy/verl/verl/protocol.py:184** - add consistency check
+- [ ] **luffy/verl/verl/single_controller/ray/base.py:395** - create a class with customizable name
+- [ ] **luffy/verl/verl/trainer/fsdp_sft_trainer.py:138** - (zhangchi.usc1992):
+- [ ] **luffy/verl/verl/trainer/fsdp_sft_trainer.py:299** - add a unified tracking
+- [ ] **luffy/verl/verl/trainer/fsdp_sft_trainer.py:318** - (zhangchi.usc1992) add back checkpoint manager. Currently, it blocks when uploading to hdfs. So very slow.
 - [ ] **luffy/verl/verl/trainer/main_ppo.py:59** - Implement reward computation for different data sources
-- [ ] **luffy/verl/verl/trainer/main_ppo.py:60** - Current implementation is incomplete and needs to be finished
-- [ ] **luffy/verl/verl/trainer/main_ppo.py:64** - Apply appropriate reward function based on data source
-- [ ] **luffy/verl/verl/trainer/main_ppo.py:65** - Handle edge cases and error conditions
-- [ ] **luffy/verl/verl/trainer/main_ppo.py:70** - Implement batch-wise reward computation
-- [ ] **luffy/verl/verl/trainer/main_ppo.py:71** - Add proper error handling and validation
+- [ ] **luffy/verl/verl/trainer/main_ppo.py:62** - Add support for parallel processing of reward computation
+- [ ] **luffy/verl/verl/trainer/main_ppo.py:63** - Implement proper sequence decoding and validation
+- [ ] **luffy/verl/verl/trainer/main_ppo.py:64** - Add thread-safe logging and debugging functionality
+- [ ] **luffy/verl/verl/trainer/main_ppo.py:65** - Optimize memory usage for large batch processing
+- [ ] **luffy/verl/verl/trainer/main_ppo.py:71** - Extract and validate prompt and response sequences
+- [ ] **luffy/verl/verl/trainer/main_ppo.py:72** - Decode sequences to text format
+- [ ] **luffy/verl/verl/trainer/main_ppo.py:73** - Apply appropriate reward function based on data source
+- [ ] **luffy/verl/verl/trainer/main_ppo.py:74** - Handle edge cases and error conditions
+- [ ] **luffy/verl/verl/trainer/main_ppo.py:79** - Implement batch-wise reward computation
+- [ ] **luffy/verl/verl/trainer/main_ppo.py:80** - Add proper error handling and validation
 - [ ] **luffy/verl/verl/trainer/ppo/ray_trainer.py:129** - add other ways to estimate advantages
 - [ ] **luffy/verl/verl/trainer/ppo/ray_trainer.py:207** - add response length
 - [ ] **luffy/verl/verl/trainer/ppo/ray_trainer.py:330** - support each role have individual ray_worker_group_cls,
@@ -125,12 +120,11 @@ LUFFY/
 - [ ] **luffy/verl/verl/utils/checkpoint/fsdp_checkpoint_manager.py:135** - address optimizer is None
 - [ ] **luffy/verl/verl/utils/hdfs_io.py:67** - (haibin.lin):
 - [ ] **luffy/verl/verl/utils/hdfs_io.py:102** - (haibin.lin):
-- [ ] **luffy/verl/verl/utils/megatron/tensor_parallel.py:137** - vocab_parallel_log_probs_from_logits
+- [ ] **luffy/verl/verl/utils/megatron/tensor_parallel.py:144** - (zhangchi.usc1992): We may change the implementation later
 - [ ] **luffy/verl/verl/utils/megatron_utils.py:202** - (sgm): check how to disable megatron timers
 - [ ] **luffy/verl/verl/utils/model.py:164** - we can make this faster
 - [ ] **luffy/verl/verl/utils/model.py:272** - to find a better way to load mistral7b-rm lm_head
-- [ ] **luffy/verl/verl/utils/torch_functional.py:162** - Technically, we only need one broadcast
-- [ ] **luffy/verl/verl/utils/torch_functional.py:171** - add them back
+- [ ] **luffy/verl/verl/utils/torch_functional.py:163** - optimize this. Technically, we only need one broadcast
 - [ ] **luffy/verl/verl/utils/torch_functional.py:362** - add them back
 - [ ] **luffy/verl/verl/workers/actor/megatron_actor.py:158** - (zhangchi.usc1992): actually, this function should only return log_prob and this logic should be handled by user outside
 - [ ] **luffy/verl/verl/workers/actor/megatron_actor.py:225** - actually, we just need to control the sampling order.
@@ -139,7 +133,6 @@ LUFFY/
 - [ ] **luffy/verl/verl/workers/fsdp_workers.py:88** - (sgm): support FSDP hybrid shard for larger model
 - [ ] **luffy/verl/verl/workers/fsdp_workers.py:117** - it seems that manual offload is slowly than FSDP offload
 - [ ] **luffy/verl/verl/workers/fsdp_workers.py:157** - (zhangchi.usc1992): 1. support create from random initialized model. 2. Support init with FSDP directly
-- [ ] **luffy/verl/verl/workers/fsdp_workers.py:197** - (zhangchi.usc1992) remove this after we switch to FSDP2
 - [ ] **luffy/verl/verl/workers/fsdp_workers.py:225** - (zhangchi.usc1992, shengguangming) fix me. Current, auto_wrap_policy causes HFRollout to hang in Gemma
 - [ ] **luffy/verl/verl/workers/fsdp_workers.py:233** - add transformer policy
 - [ ] **luffy/verl/verl/workers/fsdp_workers.py:252** - add more optimizer args into config
@@ -158,11 +151,8 @@ LUFFY/
 - [ ] **luffy/verl/verl/workers/reward_model/megatron/reward_model.py:145** - (sgm): check why is bfloat16
 - [ ] **luffy/verl/verl/workers/reward_model/megatron/reward_model.py:192** - actually, we just need to control the sampling order.
 - [ ] **luffy/verl/verl/workers/reward_model/megatron/reward_model.py:233** - we may use the new schedule instead
-- [ ] **luffy/verl/verl/workers/rollout/hf_rollout.py:16** - refactor this class
+- [ ] **luffy/verl/verl/workers/rollout/hf_rollout.py:15** - refactor this class. Currently, it will hang when using FSDP HybridShard. We should actually create a single GPU model. Then, get full state_dict and bind the state_dict to the single GPU model. Then, use the single GPU model to perform generation.
 - [ ] **luffy/verl/verl/workers/rollout/hf_rollout.py:98** - filter out the seq with no answers like ds-chat
-- [ ] **luffy/verl/verl/workers/rollout/vllm_rollout/vllm_rollout.py:40** - 
-- [ ] **luffy/verl/verl/workers/rollout/vllm_rollout/vllm_rollout.py:41** - 
-- [ ] **luffy/verl/verl/workers/rollout/vllm_rollout/vllm_rollout.py:43** - 
 - [ ] **luffy/verl/verl/workers/sharding_manager/fsdp_ulysses.py:49** - check how to set seed for each model
 - [ ] **luffy/verl/verl/workers/sharding_manager/fsdp_ulysses.py:56** - check how to set seed for each model
 - [ ] **luffy/verl/verl/workers/sharding_manager/fsdp_vllm.py:82** - offload FSDP model weights
@@ -171,9 +161,7 @@ LUFFY/
 - [ ] **luffy/verl/verl/workers/sharding_manager/fsdp_vllm.py:130** - shall we build a micro_dp group for vllm when integrating with vLLM?
 - [ ] **luffy/verl/verl/workers/sharding_manager/megatron_vllm.py:76** - after binding to the memory buffer, we can load the checkpoint here
 - [ ] **luffy/verl/verl/workers/sharding_manager/megatron_vllm.py:253** - (sgm): this may not be true for FSDP -> vLLM
-- [ ] **luffy/verl/verl/workers/sharding_manager/megatron_vllm.py:273** - (zhangchi.usc1992): currently, the implementation doesn't support this
 - [ ] **luffy/verl/verl/workers/sharding_manager/megatron_vllm.py:323** - (zhangchi.usc1992) We can consider copy non-tp weight to another infer buffer.
-
 ## 🤝 Contributing
 
 1. Pick a TODO item from the list above
