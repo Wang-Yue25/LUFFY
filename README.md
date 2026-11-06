@@ -97,7 +97,6 @@ LUFFY/
 - [ ] **luffy/verl/verl/mix_src/mix_trainer_acc_rebatch.py:437** - make a canonical logger that supports various backend
 - [ ] **luffy/verl/verl/mix_src/mix_trainer_acc_rebatch.py:592** - check path
 - [ ] **luffy/verl/verl/mix_src/mix_trainer_acc_rebatch.py:628** - from remote not implemented yet
-- [ ] **luffy/verl/verl/mix_src/mix_vllm_rollout.py:43** - 
 - [ ] **luffy/verl/verl/models/llama/megatron/layers/parallel_attention.py:380** - llama does not have dropout in the config??
 - [ ] **luffy/verl/verl/models/llama/megatron/layers/parallel_decoder.py:78** - add sequence parallel operator reduce_scatter here
 - [ ] **luffy/verl/verl/models/llama/megatron/layers/parallel_decoder.py:86** - add sequence parallel operator all_gather here
@@ -134,12 +133,10 @@ LUFFY/
 - [ ] **luffy/verl/verl/third_party/vllm/vllm_v_0_3_1/worker.py:109** - do not use cupy
 - [ ] **luffy/verl/verl/third_party/vllm/vllm_v_0_3_1/worker.py:209** - (woosuk): Profile swapping overhead and optimize if needed.
 - [ ] **luffy/verl/verl/third_party/vllm/vllm_v_0_3_1/worker.py:291** - (shengguangming): maybe we should also flag the megatron is initialized
-- [ ] **luffy/verl/verl/third_party/vllm/vllm_v_0_4_2/arg_utils.py:44** - 
 - [ ] **luffy/verl/verl/third_party/vllm/vllm_v_0_4_2/arg_utils.py:109** - (shengguangming): delete the unused args
 - [ ] **luffy/verl/verl/third_party/vllm/vllm_v_0_4_2/arg_utils.py:192** - (woosuk): Support fine-grained seeds (e.g., seed per request).
 - [ ] **luffy/verl/verl/third_party/vllm/vllm_v_0_4_2/arg_utils.py:257** - spec config
 - [ ] **luffy/verl/verl/third_party/vllm/vllm_v_0_4_2/config.py:136** - for multimodal model
-- [ ] **luffy/verl/verl/third_party/vllm/vllm_v_0_4_2/hf_weight_loader.py:81** - 
 - [ ] **luffy/verl/verl/third_party/vllm/vllm_v_0_4_2/llm.py:268** - (shengguangming): maybe we can hack the autoregressive logics without only apply post process for better performance
 - [ ] **luffy/verl/verl/third_party/vllm/vllm_v_0_4_2/llm.py:272** - (sgm): we can optimize it by making the dataloader yield List[int] without padding.
 - [ ] **luffy/verl/verl/third_party/vllm/vllm_v_0_4_2/llm.py:288** - (shengguangming): can be optimzied by rewrite the Sampler._get_logprobs() logits
@@ -153,8 +150,6 @@ LUFFY/
 - [ ] **luffy/verl/verl/third_party/vllm/vllm_v_0_4_2/megatron_weight_loaders.py:67** - check megatron
 - [ ] **luffy/verl/verl/third_party/vllm/vllm_v_0_4_2/megatron_weight_loaders.py:254** - need to implement a general way to deal with prefix
 - [ ] **luffy/verl/verl/third_party/vllm/vllm_v_0_4_2/megatron_weight_loaders.py:272** - (shengguangming): latest commit in vllm fix awq for this function and add load_weights
-- [ ] **luffy/verl/verl/third_party/vllm/vllm_v_0_4_2/megatron_weight_loaders.py:325** - (pad to be divided by 4)
-- [ ] **luffy/verl/verl/third_party/vllm/vllm_v_0_4_2/megatron_weight_loaders.py:337** - remove dependencies from megatron
 - [ ] **luffy/verl/verl/third_party/vllm/vllm_v_0_4_2/model_loader.py:141** - (sgm): This is a hack, we need to register the load_weight() func for each model in vllm
 - [ ] **luffy/verl/verl/third_party/vllm/vllm_v_0_4_2/model_loader.py:226** - (sgm): This is a hack, we need to register the load_weight() func for each model in vllm
 - [ ] **luffy/verl/verl/third_party/vllm/vllm_v_0_4_2/model_runner.py:274** - (sgm): perform sampling on rank 0
@@ -172,7 +167,6 @@ LUFFY/
 - [ ] **luffy/verl/verl/third_party/vllm/vllm_v_0_5_4/arg_utils.py:226** - (woosuk): Support fine-grained seeds (e.g., seed per request).
 - [ ] **luffy/verl/verl/third_party/vllm/vllm_v_0_5_4/arg_utils.py:366** - spec config
 - [ ] **luffy/verl/verl/third_party/vllm/vllm_v_0_5_4/config.py:191** - check whether this is necessary
-- [ ] **luffy/verl/verl/third_party/vllm/vllm_v_0_5_4/hf_weight_loader.py:32** - 
 - [ ] **luffy/verl/verl/third_party/vllm/vllm_v_0_5_4/llm.py:148** - check usagecontext
 - [ ] **luffy/verl/verl/third_party/vllm/vllm_v_0_5_4/llm.py:205** - (sgm): we can optimize it by making the dataloader yield List[int] without padding.
 - [ ] **luffy/verl/verl/third_party/vllm/vllm_v_0_5_4/llm.py:221** - (shengguangming): can be optimzied by rewrite the Sampler._get_logprobs() logits
@@ -198,30 +192,6 @@ LUFFY/
 - [ ] **luffy/verl/verl/third_party/vllm/vllm_v_0_5_4/worker.py:84** - we don't need driver
 - [ ] **luffy/verl/verl/third_party/vllm/vllm_v_0_5_4/worker.py:103** - (sgm): set correct model runner class
 - [ ] **luffy/verl/verl/third_party/vllm/vllm_v_0_5_4/worker.py:301** - (sgm): check whether need this
-- [ ] **luffy/verl/verl/third_party/vllm/vllm_v_0_6_3/hf_weight_loader.py:29** - 
-- [ ] **luffy/verl/verl/third_party/vllm/vllm_v_0_6_3/llm.py:147** - check usagecontext
-- [ ] **luffy/verl/verl/third_party/vllm/vllm_v_0_6_3/llm.py:170** - (sgm): we can optimize it by making the dataloader yield List[int] without padding.
-- [ ] **luffy/verl/verl/third_party/vllm/vllm_v_0_6_3/llm.py:186** - (shengguangming): can be optimzied by rewrite the Sampler._get_logprobs() logits
-- [ ] **luffy/verl/verl/third_party/vllm/vllm_v_0_6_3/llm_engine_sp.py:174** - (woosuk): Print more configs in debug mode.
-- [ ] **luffy/verl/verl/third_party/vllm/vllm_v_0_6_3/llm_engine_sp.py:336** - (sgm): add for verl but we may not tokenizer in Rollout
-- [ ] **luffy/verl/verl/third_party/vllm/vllm_v_0_6_3/llm_engine_sp.py:345** - check whether we should rebuild the CUDAGraph every iter when offload/load KVCache
-- [ ] **luffy/verl/verl/third_party/vllm/vllm_v_0_6_3/megatron_weight_loaders.py:68** - check megatron
-- [ ] **luffy/verl/verl/third_party/vllm/vllm_v_0_6_3/megatron_weight_loaders.py:255** - need to implement a general way to deal with prefix
-- [ ] **luffy/verl/verl/third_party/vllm/vllm_v_0_6_3/megatron_weight_loaders.py:273** - (shengguangming): latest commit in vllm fix awq for this function and add load_weights
-- [ ] **luffy/verl/verl/third_party/vllm/vllm_v_0_6_3/model_loader.py:170** - (sgm): This is a hack, we need to register the load_weight() func for each model in vllm
-- [ ] **luffy/verl/verl/third_party/vllm/vllm_v_0_6_3/model_loader.py:273** - (sgm): This is a hack, we need to register the load_weight() func for each model in vllm
-- [ ] **luffy/verl/verl/third_party/vllm/vllm_v_0_6_3/parallel_state.py:97** - (sgm): deviate from the v0.5.4, not pp now
-- [ ] **luffy/verl/verl/third_party/vllm/vllm_v_0_6_3/parallel_state.py:144** - check why True is not work in Ray trainer
-- [ ] **luffy/verl/verl/third_party/vllm/vllm_v_0_6_3/parallel_state.py:172** - check why True is not work in Ray trainer
-- [ ] **luffy/verl/verl/third_party/vllm/vllm_v_0_6_3/parallel_state.py:185** - init using device mesh (not support hybrid engine now)
-- [ ] **luffy/verl/verl/third_party/vllm/vllm_v_0_6_3/parallel_state.py:257** - check why True is not work in Ray trainer
-- [ ] **luffy/verl/verl/third_party/vllm/vllm_v_0_6_3/parallel_state.py:262** - init using device mesh (not support hybrid engine now)
-- [ ] **luffy/verl/verl/third_party/vllm/vllm_v_0_6_3/spmd_gpu_executor.py:73** - (sgm): verl not support speculative decode now
-- [ ] **luffy/verl/verl/third_party/vllm/vllm_v_0_6_3/spmd_gpu_executor.py:246** - (sgm): not implemented async executor yet
-- [ ] **luffy/verl/verl/third_party/vllm/vllm_v_0_6_3/worker.py:33** - (sgm): check why vllm has similar file in vllm.model_executor.parallel_utils.parallel_state
-- [ ] **luffy/verl/verl/third_party/vllm/vllm_v_0_6_3/worker.py:92** - we don't need driver
-- [ ] **luffy/verl/verl/third_party/vllm/vllm_v_0_6_3/worker.py:110** - (sgm): set correct model runner class
-- [ ] **luffy/verl/verl/third_party/vllm/vllm_v_0_6_3/worker.py:311** - (sgm): check whether need this
 - [ ] **luffy/verl/verl/trainer/fsdp_sft_trainer.py:77** - add checkpoint manager
 - [ ] **luffy/verl/verl/trainer/fsdp_sft_trainer.py:140** - (zhangchi.usc1992):
 - [ ] **luffy/verl/verl/trainer/fsdp_sft_trainer.py:159** - Implement model loading with proper initialization context
@@ -292,7 +262,6 @@ LUFFY/
 - [ ] **luffy/verl/verl/workers/reward_model/megatron/reward_model.py:192** - actually, we just need to control the sampling order.
 - [ ] **luffy/verl/verl/workers/reward_model/megatron/reward_model.py:233** - we may use the new schedule instead
 - [ ] **luffy/verl/verl/workers/rollout/hf_rollout.py:98** - filter out the seq with no answers like ds-chat
-- [ ] **luffy/verl/verl/workers/rollout/vllm_rollout/vllm_rollout.py:43** - 
 - [ ] **luffy/verl/verl/workers/sharding_manager/fsdp_ulysses.py:49** - check how to set seed for each model
 - [ ] **luffy/verl/verl/workers/sharding_manager/fsdp_ulysses.py:56** - check how to set seed for each model
 - [ ] **luffy/verl/verl/workers/sharding_manager/fsdp_vllm.py:82** - offload FSDP model weights
@@ -302,6 +271,7 @@ LUFFY/
 - [ ] **luffy/verl/verl/workers/sharding_manager/megatron_vllm.py:76** - after binding to the memory buffer, we can load the checkpoint here
 - [ ] **luffy/verl/verl/workers/sharding_manager/megatron_vllm.py:253** - (sgm): this may not be true for FSDP -> vLLM
 - [ ] **luffy/verl/verl/workers/sharding_manager/megatron_vllm.py:323** - (zhangchi.usc1992) We can consider copy non-tp weight to another infer buffer.
+
 ## 🤝 Contributing
 
 1. Pick a TODO item from the list above
